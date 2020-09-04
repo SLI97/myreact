@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDom from "react-dom"
 import MyApp from "./app"
+import "./icons/index.css"
+// import mockdata from "../mock"
 
 const haha = React.createElement("div",{},"12312312321321")
 

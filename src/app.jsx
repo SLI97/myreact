@@ -1,89 +1,69 @@
-import React from "react"
+import React, {useState} from "react"
+import PropTypes from 'prop-types';
+import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom';
+import axios from "axios"
 
 export default class MyApp extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
-			flag: true,
-			value: []
-		}
-		console.log(props)
-		this.handleChange = this.handleChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
+			login: '',
+		};
+
 	}
 
-	changeFlag = () => {
-		this.setState({
-			flag: !this.state.flag
-		})
-		// this.setState((state)=>(
-		// 	{flag:!state.flag}
-		// ))
-	}
-
-	creatComponents() {
-		const creat = function (num) {
-			return React.createElement('h' + num, {id: num + "myca", key: num}, "我是内容h" + num)
-		}
-		const arr = [creat(1), creat(2), creat(3), creat(4)]
-		return arr
-	}
-
-	handleSubmit = (event) => {
-		event.preventDefault()
-		console.log("我提交了")
-	}
-
-	handleChange(event) {
-		event.persist()
-		// const value = event.target.value
-		// // console.log(event.target.value)
-		// const qqq = this.state.value.concat()
-		// let index = this.state.value.findIndex(i => i === value)
-		// if (index<0) {
-		// 	qqq.push(value)
-		// } else {
-		// 	qqq.splice(index, 1)
-		// }
-		// // console.log(qqq)
-		// this.setState((state) => {
-		// 	return {
-		// 		value: qqq
-		// 	}
-		// })
-	}
-
-	onSelect(event){
-		console.log(event)
+	componentDidMount() {
+		console.log("我挂载了")
 	}
 
 	render() {
 		return (
 			<div>
-				<h1>父亲传给我的长度{this.props.dataLength}</h1>
-				<h2 onClick={this.changeFlag}>按我改变组件</h2>
-
-				{/*<h3>父亲传给我的插槽内容</h3>*/}
-				{/*{this.props.children}*/}
-
-				{/*<h4>我是自己写的creat</h4>*/}
-				{/*{*/}
-				{/*this.creatComponents().map(i => i)*/}
-				{/*}*/}
-				<form onSubmit={this.handleSubmit}>
-					{/*<label>*/}
-					{/*名字:*/}
-					{/*<textarea type="text" value={this.state.value} onChange={this.handleChange}/>*/}
-					{/*</label>*/}
-					<select value={this.state.value} multiple={true} onChange={this.handleChange} onSelect={this.onSelect}>
-						<option value="grapefruit">葡萄柚</option>
-						<option value="lime">酸橙</option>
-						<option value="coconut">椰子</option>
-						<option value="mango">芒果</option>
-					</select>
-					<input type="submit" value="提交"/>
-				</form>
+				<h1>路由！</h1>
+				<Router>
+					<NavLink
+						to="/about"
+						isActive={() => true}
+						activeStyle={{
+							fontWeight: 'bold',
+							color: 'red'
+						}}
+					>Event 123</NavLink>
+					<Link to={"/"}>去Home</Link>
+					<Link to={"/about"}>去About</Link>
+					<Link to={"/haha"}>去Haha</Link>
+					<Home qqq={111}/>
+					<Switch>
+						<Route exact path="/" component={Home} qqq={111}/>
+						<Route exact path={"/about"} component={About}/>
+						<Route exact path={"/haha"} render={()=><h2>我是渲染的haha</h2>}/>
+						<Route  component={NotFound}/>
+					</Switch>
+				</Router>
 			</div>
-		)
+		);
 	}
+}
+
+function Home(props) {
+	console.log(props)
+	return (
+		<h1>我是Home + {props.qqq}</h1>
+	)
+}
+
+Home.propTypes = {
+	qqq:PropTypes.string
+}
+
+function About() {
+	return (
+		<h1>我是About</h1>
+	)
+}
+
+function NotFound() {
+	return (
+		<h1>我是NotFound</h1>
+	)
 }

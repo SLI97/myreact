@@ -19,6 +19,7 @@ module.exports = {
 		hot: true,
 		quiet: true,
 		clientLogLevel: "warning",
+		historyApiFallback: true,
 		// color: true,
 	},
 	module: {
