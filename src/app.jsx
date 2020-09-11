@@ -1,7 +1,12 @@
 import React, {useState} from "react"
 import PropTypes from 'prop-types';
-import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, NavLink, Switch,} from 'react-router-dom';
+// import {Router, Route, Link, NavLink, Switch,} from 'react-router-dom';
 import axios from "axios"
+import Login from "@/pages/Login"
+import history from "./actions/history"
+import UserLayout from "@/layouts/UserLayout"
+import BasicLayout from "@/layouts/BasicLayout"
 
 export default class MyApp extends React.Component {
 	constructor(props) {
@@ -10,37 +15,41 @@ export default class MyApp extends React.Component {
 			login: '',
 		};
 
-	}
+		console.log(history)
 
-	componentDidMount() {
-		console.log("我挂载了")
 	}
 
 	render() {
 		return (
-			<div>
-				<h1>路由！</h1>
-				<Router>
-					<NavLink
-						to="/about"
-						isActive={() => true}
-						activeStyle={{
-							fontWeight: 'bold',
-							color: 'red'
-						}}
-					>Event 123</NavLink>
-					<Link to={"/"}>去Home</Link>
-					<Link to={"/about"}>去About</Link>
-					<Link to={"/haha"}>去Haha</Link>
-					<Home qqq={111}/>
-					<Switch>
-						<Route exact path="/" component={Home} qqq={111}/>
-						<Route exact path={"/about"} component={About}/>
-						<Route exact path={"/haha"} render={()=><h2>我是渲染的haha</h2>}/>
-						<Route  component={NotFound}/>
-					</Switch>
-				</Router>
-			</div>
+			<Router>
+				<Switch>
+					<UserLayout path="/login" render={() => (<UserLayout/>)}>
+						{/*<Route exact path="/login" render={() => (<Login/>)}/>*/}
+						<Route exact path="/login" component={Login}/>
+						<div>222</div>
+					</UserLayout>
+					{/*<UserLayout>*/}
+					{/*<Route exact path="/login" component={Login}/>*/}
+					{/*<div>222</div>*/}
+					{/*</UserLayout>*/}
+					<BasicLayout path="/home" render={() => (<BasicLayout/>)}>
+						<div>hahaha</div>
+						<Route exact path="/home" render={() => (<div>444</div>)}>
+						</Route>
+					</BasicLayout>
+					{/*<Link to={"/"}>去Home</Link>*/}
+					{/*<Link to={"/about"}>去About</Link>*/}
+					{/*<Link to={"/haha"}>去Haha</Link>*/}
+					{/*<Home qqq={111}/>*/}
+					{/*<Switch>*/}
+					{/*<Route exact path="/" component={Home} qqq={111}/>*/}
+					{/*<Route exact path="/" component={Home} qqq={111}/>*/}
+					{/*<Route exact path={"/about"} component={About}/>*/}
+					{/*<Route exact path={"/haha"} render={()=><h2>我是渲染的haha</h2>}/>*/}
+					{/*<Route  component={NotFound}/>*/}
+					{/*</Switch>*/}
+				</Switch>
+			</Router>
 		);
 	}
 }
@@ -53,7 +62,7 @@ function Home(props) {
 }
 
 Home.propTypes = {
-	qqq:PropTypes.string
+	qqq: PropTypes.number
 }
 
 function About() {
