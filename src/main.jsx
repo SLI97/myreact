@@ -10,13 +10,17 @@ import {createStore, applyMiddleware} from "redux"
 import {Provider} from "react-redux"
 import reducers from "./reducer"
 import thunk from "redux-thunk"
+import { ConnectedRouter,routerMiddleware } from 'connected-react-router'
+import history from "@/actions/history";
 
 
-const store = createStore(reducers, applyMiddleware(thunk))
+const store = createStore(reducers, applyMiddleware(thunk, routerMiddleware(history)))
 
 ReactDom.render(
 	<Provider store={store}>
-		<MyApp></MyApp>
+		<ConnectedRouter history={history}>
+			<MyApp/>
+		</ConnectedRouter>
 	</Provider>,
 	document.getElementById("app"))
 

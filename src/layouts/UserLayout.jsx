@@ -3,7 +3,7 @@ import {Layout, Spin, Form, Input, Button, Checkbox} from 'antd';
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from 'react-router-dom';
 
 const {Header, Footer, Sider, Content} = Layout;
-import "./index.styl"
+import "./styles/user.less"
 
 const UserLayout = (props) => {
 

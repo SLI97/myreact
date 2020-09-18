@@ -8,6 +8,7 @@ import "./index.less"
 import {connect} from "react-redux"
 import {login} from "@/actions/login"
 import {createLoadingSelector} from "@/reducer/loading"
+import {withRouter} from 'react-router-dom'
 
 const {Content} = Layout;
 
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 })
 
+@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Login extends React.Component {
 
@@ -31,12 +33,10 @@ class Login extends React.Component {
 
 	onFinish = (values) => {
 		const {loginApi,history} = this.props
-		loginApi({payload: values,history})
+		loginApi({payload: values})
 	}
 
 	componentDidMount() {
-		// console.log(this.props)
-		// console.log(this.props.loading)
 	}
 
 	render() {
