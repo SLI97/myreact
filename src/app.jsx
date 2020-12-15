@@ -24,20 +24,20 @@ export default class MyApp extends React.Component {
 	}
 
 	componentDidMount() {
-		setStore("user", JSON.stringify({
-			age: 79,
-			birthday: "1974-10-05",
-			city: "北京 北京市",
-			name: "袁洋",
-			phone: "13576738397",
-			token: "9BFF2780-a5BC-24b5-9EDa-e48b2218f73c",
-			userName: "admin",
-		}))
+		// setStore("user", JSON.stringify({
+		// 	age: 79,
+		// 	birthday: "1974-10-05",
+		// 	city: "北京 北京市",
+		// 	name: "袁洋",
+		// 	phone: "13576738397",
+		// 	token: "9BFF2780-a5BC-24b5-9EDa-e48b2218f73c",
+		// 	userName: "admin",
+		// }))
 
-		setStore("theme", JSON.stringify({
-			leftSide: 'darkgrey', // 左边
-			navbar: 'light' // 顶部
-		}))
+		// setStore("theme", JSON.stringify({
+		// 	leftSide: 'darkgrey', // 左边
+		// 	navbar: 'light' // 顶部
+		// }))
 	}
 
 	render() {

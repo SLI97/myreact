@@ -83,10 +83,10 @@ export default class BasicLayout extends React.PureComponent {
 	};
 
 	onChangeTheme = theme => {
-		setStore('theme',JSON.stringify(theme))
-		this.setState({
-			theme
-		});
+		// setStore('theme',JSON.stringify(theme))
+		// this.setState({
+		// 	theme
+		// });
 	};
 
 	render() {
