@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import {login} from '@/actions/login'
 import {createLoadingSelector} from '@/reducer/loading'
 import {withRouter} from 'react-router-dom'
+import {getMenuSuccess} from '@/instance'
 
 const {Content} = Layout
 
@@ -20,7 +21,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	loginApi: (payload) => {
 		login(payload)(dispatch)
-	}
+	},
+	qqq:(payload) => {
+		return dispatch({type: payload, payload: null})
+	},
 })
 
 const Login = (props) => {
@@ -35,12 +39,21 @@ const Login = (props) => {
 // 	}
 	})
 
+	useEffect(()=>{
+		console.log('render',333)
+	})
+
+	const changeFlag = ()=>{
+		props.qqq('AAA')
+	}
+
 	const {loading} = props
 	const size = 'large'
 
 	return (
 		<Layout className="full-layout user-layout login-page">
 			<Content>
+				<button onClick={changeFlag}>按我{props.login.flag?'是':'否'}</button>
 				<Form
 					name="basic"
 					onFinish={onFinish}

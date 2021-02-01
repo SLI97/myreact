@@ -1,12 +1,16 @@
-import {loginSuccess, loginError} from "../instance"
+import {loginSuccess, loginError} from '../instance'
+// import {fromJS,Map} from 'immutable'
+
 
 const initData = {
 	loggedIn: false,
 	message: '',
-	user: {}
+	user: {},
+	flag:false,
 }
 
 const login = (state = initData, action) => {
+	console.log(action.type, state)
 	const {payload} = action
 	switch (action.type) {
 		case loginSuccess:
@@ -22,6 +26,14 @@ const login = (state = initData, action) => {
 				loggedIn: false,
 				message: payload.message
 			}
+		case 'AAA':
+			let obj = {
+				...state,
+				flag: !state.flag,
+			}
+			// console.log(state)
+			// return state.set('focused', !state.get('focused'))
+		return obj
 		default:
 			return state
 	}

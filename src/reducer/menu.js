@@ -1,4 +1,5 @@
 import {getMenuSuccess} from "../instance"
+import {fromJS} from 'immutable'
 
 const initData = {
 	menu:[],

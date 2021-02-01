@@ -1,3 +1,5 @@
+// import {fromJS} from 'immutable'
+
 const loading = (state = {}, action) => {
 	const { type } = action;
 	const matches = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(type);

@@ -19,25 +19,33 @@ export default class MyApp extends React.Component {
 		};
 
 		// console.log(history)
-		console.log(this)
-
 	}
 
 	componentDidMount() {
-		// setStore("user", JSON.stringify({
-		// 	age: 79,
-		// 	birthday: "1974-10-05",
-		// 	city: "北京 北京市",
-		// 	name: "袁洋",
-		// 	phone: "13576738397",
-		// 	token: "9BFF2780-a5BC-24b5-9EDa-e48b2218f73c",
-		// 	userName: "admin",
-		// }))
+		class Person {
+			@readonly
+			first = 123
+			last = 456
+			// @readonly
+			// name() { return `${this.first} ${this.last}` }
+		}
 
-		// setStore("theme", JSON.stringify({
-		// 	leftSide: 'darkgrey', // 左边
-		// 	navbar: 'light' // 顶部
-		// }))
+		function readonly(target, name, descriptor,haha){
+			// descriptor对象原来的值如下
+			// {
+			//   value: specifiedFunction,
+			//   enumerable: false,
+			//   configurable: true,
+			//   writable: true
+			// };
+			console.log(target,name,descriptor,haha)
+			descriptor.writable = false;
+			return descriptor;
+		}
+
+		const p1 = new Person()
+		// console.log(p1.name())
+
 	}
 
 	render() {
