@@ -40,7 +40,7 @@ const Login = (props) => {
 	})
 
 	useEffect(()=>{
-		console.log('render',333)
+		console.log('render',props.login,333)
 	})
 
 	const changeFlag = ()=>{
@@ -53,7 +53,7 @@ const Login = (props) => {
 	return (
 		<Layout className="full-layout user-layout login-page">
 			<Content>
-				<button onClick={changeFlag}>按我{props.login.flag?'是':'否'}</button>
+				<button onClick={changeFlag}>按我{props.login.get('flag')?'是':'否'}</button>
 				<Form
 					name="basic"
 					onFinish={onFinish}

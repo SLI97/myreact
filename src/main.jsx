@@ -10,18 +10,24 @@ import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import reducers from './reducer'
 import thunk from 'redux-thunk'
-import {ConnectedRouter, routerMiddleware} from 'connected-react-router'
+// import {ConnectedRouter, routerMiddleware} from 'connected-react-router'
+import { ConnectedRouter ,routerMiddleware } from "connected-react-router/immutable";
 import history from '@/actions/history'
 
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import {PersistGate} from 'redux-persist/lib/integration/react';
+import immutableTransform from "redux-persist-transform-immutable";
 
 const persistConfig = {
+	transforms: [
+		immutableTransform()
+		// encryptor
+	],
 	key: 'root',
 	storage: storage,
-	stateReconciler: autoMergeLevel2 // 查看 'Merge Process' 部分的具体情况
+	// stateReconciler: autoMergeLevel2 // 查看 'Merge Process' 部分的具体情况
 }
 
 const myPersistReducer = persistReducer(persistConfig, reducers)
